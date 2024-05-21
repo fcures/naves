@@ -1,7 +1,9 @@
 body {
   font-family: "Helvetica", Sans-Serif;
-  background-color: #808080;
+  background-color: rgb(50, 50, 50);
 }
+
+
 
 a {
   color: #112d4e; 
