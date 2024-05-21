@@ -6,10 +6,7 @@ The latest version is supported, AKA the main branch.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 1.x.x   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
