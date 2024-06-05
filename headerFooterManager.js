@@ -31,6 +31,11 @@ class SpecialFooter extends HTMLElement {
     <p>
       Naves.dev
     </p>
+
+    <style>
+  * {box-sizing: border-box}
+  body {font-family: Verdana, sans-serif; margin:30px}
+  </style>
   `
   }
 }
