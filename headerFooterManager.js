@@ -23,7 +23,7 @@ class SpecialFooter extends HTMLElement {
   connectedCallback(){
     this.innerHTML = `
     <small>
-      Naves.dev
+      Naves.dev made by Sevan.
     </small>
 
     <style>
