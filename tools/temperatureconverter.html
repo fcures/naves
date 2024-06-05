@@ -17,7 +17,35 @@
   <p>Type a value in the fields to convert the value into different temperature measurements.</p>
 
 
-  
+  <label>Fahrenheit</label>
+<input id="inputFahrenheit" class="w3-input w3-border" type="number" min="-459.66999999999996" placeholder="Fahrenheit" oninput="temperatureConverter(this.id,this.value)" onchange="temperatureConverter(this.id,this.value)">
+
+<label>Celsius</label>
+<input id="inputCelsius" class="w3-input w3-border" type="number" min="-273.15" placeholder="Celsius" oninput="temperatureConverter(this.id,this.value)" onchange="temperatureConverter(this.id,this.value)">
+
+<label>Kelvin</label>
+<input id="inputKelvin" class="w3-input w3-border" type="number" min="0" placeholder="Kelvin" oninput="temperatureConverter(this.id,this.value)" onchange="temperatureConverter(this.id,this.value)">
+
+<script>
+function temperatureConverter(source,valNum) {
+  valNum = parseFloat(valNum);
+  var inputFahrenheit = document.getElementById("inputFahrenheit");
+  var inputCelsius = document.getElementById("inputCelsius");
+  var inputKelvin = document.getElementById("inputKelvin");
+  if (source=="inputFahrenheit") {
+    inputCelsius.value=((valNum-32)/1.8).toFixed(2);
+    inputKelvin.value=(((valNum-32)/1.8)+273.15).toFixed(2);
+  }
+  if (source=="inputCelsius") {
+    inputFahrenheit.value=((valNum*1.8)+32).toFixed(2);
+    inputKelvin.value=((valNum)+273.15).toFixed(2);
+  }
+  if (source=="inputKelvin") {
+    inputFahrenheit.value=(((valNum-273.15)*1.8)+32).toFixed(2);
+    inputCelsius.value=((valNum)-273.15).toFixed(2);
+  }
+}
+</script>
   
 
   <special-footer></special-footer>
