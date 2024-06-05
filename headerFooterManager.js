@@ -73,6 +73,8 @@ li.dropdown {
 
 <ul>
   <li><a href="/">Home</a></li>
+
+  <li><a href="/posts">Posts</a></li>
   
   <li class="dropdown">
     <a href="/tools" class="dropbtn">Tools</a>
