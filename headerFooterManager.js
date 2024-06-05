@@ -23,6 +23,7 @@ class SpecialHeader extends HTMLElement {
 class SpecialFooter extends HTMLElement {
   connectedCallback(){
     this.innerHTML = `
+    <br>
     <small>
       naves.dev made by Sevan.
     </small>
