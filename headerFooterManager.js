@@ -1,3 +1,15 @@
+class SpecialMeta extends HTMLElement {
+  connectedCallback(){
+    this.innerHTML = `
+
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="./favi.ico">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Sevan's Portfolio</title>
+  `
+  }
+}
+
 class SpecialHeader extends HTMLElement {
   connectedCallback(){
     this.innerHTML = `
@@ -23,5 +35,6 @@ class SpecialFooter extends HTMLElement {
   }
 }
 
+customElements.define('special-meta', SpecialMeta)
 customElements.define('special-header', SpecialHeader)
 customElements.define('special-footer', SpecialFooter)
