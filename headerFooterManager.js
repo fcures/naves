@@ -5,7 +5,7 @@ class SpecialMeta extends HTMLElement {
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="./favi.ico">
     <link rel="stylesheet" href="/styles.css">
-    <title>Sevan's Portfolio</title>
+    <title>Template</title>
   `
   }
 }
@@ -13,14 +13,9 @@ class SpecialMeta extends HTMLElement {
 class SpecialHeader extends HTMLElement {
   connectedCallback(){
     this.innerHTML = `
-
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="./favi.ico">
-    <link rel="stylesheet" href="/styles.css">
-    <title>Sevan's Portfolio</title>
-    
     <button class="tablink"><a href = "/">Home</a></button>
     <button class="tablink"><a href = "/about">About Me</a></button>
+    <button class="tablink"><a href = "/tools">Tools</a></button>
   `
   }
 }
@@ -28,9 +23,9 @@ class SpecialHeader extends HTMLElement {
 class SpecialFooter extends HTMLElement {
   connectedCallback(){
     this.innerHTML = `
-    <p>
+    <small>
       Naves.dev
-    </p>
+    </small>
 
     <style>
   * {box-sizing: border-box}
