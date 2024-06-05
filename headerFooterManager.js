@@ -3,7 +3,7 @@ class SpecialMeta extends HTMLElement {
     this.innerHTML = `
 
     <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="/favi.ico">
+    <link rel="icon" type="image/x-icon" href="./favi.ico">
     <link rel="stylesheet" href="/styles.css">
     <title>Template</title>
   `
