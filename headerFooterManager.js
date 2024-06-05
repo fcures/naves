@@ -16,6 +16,10 @@ class SpecialHeader extends HTMLElement {
     <button class="tablink"><a href = "/">Home</a></button>
     <button class="tablink"><a href = "/about">About Me</a></button>
     <button class="tablink"><a href = "/tools">Tools</a></button>
+
+    <br>
+    <br>
+    <img src="/favicon.ico" alt="naves" width="50" height="50"/>
   `
   }
 }
