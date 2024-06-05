@@ -97,7 +97,7 @@ class SpecialFooter extends HTMLElement {
     this.innerHTML = `
     <br>
     <small>
-      naves.dev made by Sevan.
+      naves.dev
     </small>
 
     <style>
