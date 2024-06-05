@@ -73,7 +73,7 @@ li.dropdown {
 
 <ul>
   <li><a href="/">Home</a></li>
-  <li><a href="/about">About</a></li>
+  
   <li class="dropdown">
     <a href="/tools" class="dropbtn">Tools</a>
     <div class="dropdown-content">
@@ -83,6 +83,8 @@ li.dropdown {
       <a href="/tools/speedconverter">Speed Converter</a>
     </div>
   </li>
+  
+  <li>style="float:right"><a class="active" href="/about">About</a></li>
 </ul>
   `
   }
