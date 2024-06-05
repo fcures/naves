@@ -75,11 +75,12 @@ li.dropdown {
   <li><a href="/">Home</a></li>
   <li><a href="/about">About</a></li>
   <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Tools</a>
+    <a href="/tools" class="dropbtn">Tools</a>
     <div class="dropdown-content">
-      <a href="/">Link 1</a>
-      <a href="/">Link 2</a>
-      <a href="/">Link 3</a>
+      <a href="/tools/weightconverter">Weight Converter</a>
+      <a href="/tools/temperatureconverter">Temperature Converter</a>
+      <a href="/tools/lengthconverter">Length Converter</a>
+      <a href="/tools/speedconverter">Speed Converter</a>
     </div>
   </li>
 </ul>
