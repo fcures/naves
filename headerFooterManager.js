@@ -5,7 +5,7 @@ class SpecialMeta extends HTMLElement {
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="/styles.css">
-    <title>Template</title>
+    <title>naves</title>
   `
   }
 }
