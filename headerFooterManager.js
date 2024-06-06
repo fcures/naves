@@ -82,8 +82,8 @@ li.dropdown {
 }
 
 img {
-    width = 25;
-    height = 25;
+    padding: 5px;
+    width: 45px;
 }
 </style>
 </head>
