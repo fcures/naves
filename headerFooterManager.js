@@ -1,17 +1,11 @@
-class SpecialMeta extends HTMLElement {
+class SpecialHeader extends HTMLElement {
   connectedCallback(){
     this.innerHTML = `
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="/styles.css">
     <title>Template</title>
-  `
-  }
-}
-
-class SpecialHeader extends HTMLElement {
-  connectedCallback(){
-    this.innerHTML = `
+    
     <style>
 body {
   background-color:white;
@@ -116,6 +110,5 @@ class SpecialFooter extends HTMLElement {
   }
 }
 
-customElements.define('special-meta', SpecialMeta)
 customElements.define('special-header', SpecialHeader)
 customElements.define('special-footer', SpecialFooter)
