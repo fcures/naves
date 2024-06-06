@@ -72,6 +72,7 @@ li.dropdown {
 <body>
 
 <ul>
+  <li><img src="/favicon.ico" alt="naves icon"/>
   <li><a href="/">Home</a></li>
 
   <li><a href="/posts">Posts</a></li>
@@ -90,7 +91,7 @@ li.dropdown {
 </ul>
 <br>
 <br>
-<img src="/favicon.ico" alt="naves icon"/>
+
   `
   }
 }
