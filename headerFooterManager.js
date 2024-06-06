@@ -1,21 +1,7 @@
-class SpecialDoc extends HTMLElement {
-  connectedCallback(){
-    this.innerHTML = `
-
-    <html lang="en">
-  `
-  }
-}
-
 class SpecialMeta extends HTMLElement {
   connectedCallback(){
     this.innerHTML = `
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <meta name="description" content="naves.dev website.">
-    <meta name="keywords" content="Sevan, sevan dev, dev, naves.dev, naves, sevan.dev, sevandev, sevan q, sevan qajar, developer">
-    <meta name="author" content="naves.dev website">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="/styles.css">
     <title>Template</title>
@@ -130,7 +116,6 @@ class SpecialFooter extends HTMLElement {
   }
 }
 
-customElements.define('special-doc', SpecialDoc)
 customElements.define('special-meta', SpecialMeta)
 customElements.define('special-header', SpecialHeader)
 customElements.define('special-footer', SpecialFooter)
