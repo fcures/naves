@@ -4,7 +4,7 @@ class SpecialPosts extends HTMLElement {
     var fs = require('fs');
     var files = fs.readdirSync('/posts/');
 
-    this.innerHTML = files
+    this.innerHTML = files[1]
   }
 }
 
