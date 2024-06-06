@@ -88,8 +88,9 @@ li.dropdown {
   
   <li style="float:right"><a class="active" href="/about">About</a></li>
 </ul>
-
-<a href="/favicon.ico" download><img src="/favicon.ico" alt="naves icon"/></a>
+<br>
+<br>
+<img src="/favicon.ico" alt="naves icon"/>
   `
   }
 }
