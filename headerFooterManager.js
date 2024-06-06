@@ -61,16 +61,11 @@ li.dropdown {
   display: block;
 }
 
-img {
-    padding: 5px;
-    width: 45px;
-}
 </style>
 </head>
 <body>
 
 <ul>
-  <li><img src="/favicon.ico" alt="naves icon"/>
   <li><a href="/">Home</a></li>
 
   <li><a href="/posts">Posts</a></li>
@@ -89,7 +84,7 @@ img {
 </ul>
 <br>
 <br>
-
+<img src="/favicon.ico" alt="naves icon" width: 45px padding: 5px/>
   `
   }
 }
