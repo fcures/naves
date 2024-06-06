@@ -5,7 +5,7 @@ class SpecialMeta extends HTMLElement {
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="/styles.css">
-    <title>naves</title>
+    <title>Template</title>
   `
   }
 }
@@ -88,6 +88,8 @@ li.dropdown {
   
   <li style="float:right"><a class="active" href="/about">About</a></li>
 </ul>
+
+<a href="/favicon.ico" download><img src="/favicon.ico" alt="naves icon"/></a>
   `
   }
 }
