@@ -5,10 +5,15 @@ import {fileURLToPath} from 'url';
 class SpecialPosts extends HTMLElement {
   connectedCallback(){
 
+  const dirContents = fs.readdirSync('/posts/');
+
+  dirContents;
+
+
     var fs = require('fs');
     var files = fs.readdirSync('/posts/');
 
-    this.innerHTML = const __filename = fileURLToPath(import.meta.url);
+    this.innerHTML = fileURLToPath(import.meta.url);
   }
 }
 
