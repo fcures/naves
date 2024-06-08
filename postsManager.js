@@ -13,7 +13,7 @@ class SpecialPosts extends HTMLElement {
     var fs = require('fs');
     var files = fs.readdirSync('/posts/');
 
-    this.innerHTML = `<h3>`, fileURLToPath(import.meta.url),`</h3>`
+    this.innerHTML = `<h3>`, files[1],`</h3>`
   }
 }
 
