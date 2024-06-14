@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="description" content="Learn about the new Era of Artificial Intelligence, how AI has affected people and their behavior.">
+  <meta name="keywords" content="Sevan, sevan dev, dev, naves.dev, naves, sevan.dev, sevandev, sevan q, sevan qajar, developer, ai, AI, A.I., artificial intelligence, intelligence, era, era of ai, new era, behavior, people, phycology">
+  <meta name="author" content="naves.dev website">
+  <title>Era of AI & How it Affects People's Behavior</title>
+</head>
+
+<body>
+
+  <special-header></special-header>
+  
+  <h1>Era of AI & How it Affects People's Behavior</h1>
+  <h2><a href = "/">Home</a></h2>
+  <h3>Coming soon.</h3>
+  <p>Will also show a pdf paper version essay of this topic.</p>
+
+  
+  <special-footer></special-footer>
+  <script src="/headerFooterManager.js"></script>
+</body>
+
+</html>
