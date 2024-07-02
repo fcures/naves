@@ -5,3 +5,4 @@ To do next: maybe deleting the posts tab and changing it to blog or something el
 
 I also might need to do other improvements.
 bop
+eee
