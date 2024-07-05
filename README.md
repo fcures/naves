@@ -6,3 +6,5 @@ To do next: maybe deleting the posts tab and changing it to blog or something el
 I also might need to make other improvements.
 
 Also change entire theme for modern standards.
+
+more stuff.
