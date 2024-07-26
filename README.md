@@ -1,4 +1,5 @@
 # naves.dev website
-This is just a small website I'm working on. I'm not sure how to go about it yet.
 
-To do next: Maybe I should delete the posts tab and change it to a blog or something else. I should also make the website much better looking and more professional.
+I am currently in the process of developing a website. The website is still in its early stages, and I am still determining the best approach to take.
+
+Next Steps: I am considering removing the "Posts" tab and replacing it with a "Blog" or similar feature. Additionally, I plan to enhance the website's visual appeal and professional appearance.
