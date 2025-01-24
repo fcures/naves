@@ -93,8 +93,10 @@ class SpecialFooter extends HTMLElement {
   connectedCallback(){
     this.innerHTML = `
     <br>
+    <br>
+    <br>
     <small>
-      naves.dev
+      this is the footer for now
     </small>
 
     <style>
