@@ -73,6 +73,7 @@ li.dropdown {
   <li class="dropdown">
     <a href="/tools" class="dropbtn">Tools</a>
     <div class="dropdown-content">
+      <a href="/tools/data_uri_generator">Data URI Generator</a>
       <a href="/tools/weightconverter">Weight Converter</a>
       <a href="/tools/temperatureconverter">Temperature Converter</a>
       <a href="/tools/lengthconverter">Length Converter</a>
