@@ -100,13 +100,13 @@
       <select id="mimeTypeSelect">
         <option value="text/plain">text/plain</option>
         <option value="text/html">text/html</option>
-        <option value="application/json">application/json</option>
-        <option value="application/javascript">application/javascript</option>
         <option value="text/css">text/css</option>
         <option value="image/png">image/png</option>
         <option value="image/jpeg">image/jpeg</option>
-        <option value="application/octet-stream">application/octet-stream</option>
         <option value="image/bmp">image/bmp</option>
+        <option value="application/json">application/json</option>
+        <option value="application/javascript">application/javascript</option>
+        <option value="application/octet-stream">application/octet-stream</option>
       </select>
     </div>
 
@@ -117,8 +117,6 @@
   <button id="copyButton">Copy to Clipboard</button>
   <button id="openInNewTabButton">Open in New Tab</button> <!-- New button added -->
 </div>
-
-
 
 <script>
   const dropArea = document.getElementById('dropArea');
@@ -225,14 +223,29 @@
   });
 
 // Open Data URI in New Tab
+//document.getElementById('openInNewTabButton').addEventListener('click', () => {
+//  const dataUri = dataUriOutput.value;
+//  if (dataUri) {
+ //   window.open(dataUri, '_blank');
+ // } else {
+//    alert('No Data URI available to open.');
+ // }
+//});
+
 document.getElementById('openInNewTabButton').addEventListener('click', () => {
   const dataUri = dataUriOutput.value;
   if (dataUri) {
-    window.open(dataUri, '_blank');
+    const link = document.createElement('a');
+    link.href = dataUri;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   } else {
     alert('No Data URI available to open.');
   }
 });
+
 
 </script>
 </body>
