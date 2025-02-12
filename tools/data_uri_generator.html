@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data URI Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+    #dropArea {
+      border: 2px dashed #ccc;
+      border-radius: 4px;
+      padding: 20px;
+      text-align: center;
+      color: #888;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    input[type="file"] {
+      display: none;
+    }
+    textarea, input[type="url"], select {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-bottom: 20px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Data URI Generator</h1>
+
+    <!-- File Upload Section -->
+    <div class="section">
+      <h2>Upload a File</h2>
+      <div id="dropArea">Drag &amp; drop a file here, or click to select one</div>
+      <input type="file" id="fileInput">
+    </div>
+
+    <!-- Text Input Section -->
+    <div class="section">
+      <h2>Or Enter Text</h2>
+      <textarea id="textInput" rows="4" placeholder="Type your text here..."></textarea>
+      <button id="generateTextUri">Generate Data URI from Text</button>
+    </div>
+
+    <!-- File URL Section -->
+    <div class="section">
+      <h2>Or Fetch File from URL</h2>
+      <input type="url" id="urlInput" placeholder="Enter file URL here">
+      <button id="fetchUrlButton">Fetch and Generate Data URI</button>
+    </div>
+
+    <!-- MIME Type Selector -->
+    <div class="section">
+      <h2>Select MIME Type</h2>
+      <select id="mimeTypeSelect">
+        <option value="text/plain">text/plain</option>
+        <option value="text/html">text/html</option>
+        <option value="application/json">application/json</option>
+        <option value="application/javascript">application/javascript</option>
+        <option value="text/css">text/css</option>
+        <option value="image/png">image/png</option>
+        <option value="image/jpeg">image/jpeg</option>
+        <option value="application/octet-stream">application/octet-stream</option>
+        <option value="image/bmp">image/bmp</option>
+      </select>
+    </div>
+
+<!-- Data URI Output and Copy Button -->
+<div class="section">
+  <h2>Data URI Output</h2>
+  <textarea id="dataUriOutput" rows="6" placeholder="Data URI will appear here..." readonly></textarea>
+  <button id="copyButton">Copy to Clipboard</button>
+  <button id="openInNewTabButton">Open in New Tab</button> <!-- New button added -->
+</div>
+
+
+
+<script>
+  const dropArea = document.getElementById('dropArea');
+  const fileInput = document.getElementById('fileInput');
+  const textInput = document.getElementById('textInput');
+  const urlInput = document.getElementById('urlInput');
+  const dataUriOutput = document.getElementById('dataUriOutput');
+  const copyButton = document.getElementById('copyButton');
+  const generateTextUri = document.getElementById('generateTextUri');
+  const fetchUrlButton = document.getElementById('fetchUrlButton');
+  const mimeTypeSelect = document.getElementById('mimeTypeSelect');
+
+  let currentMimeType = mimeTypeSelect.value; // Store the initial MIME type selection
+
+  // Function to handle file reading
+  function handleFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const mimeType = file.type || "application/octet-stream"; 
+      dataUriOutput.value = `data:${mimeType};base64,${btoa(e.target.result)}`;
+    };
+    reader.onerror = function() {
+      dataUriOutput.value = 'Error reading file.';
+    };
+    reader.readAsBinaryString(file);
+  }
+
+  // File upload events
+  dropArea.addEventListener('click', () => {
+    fileInput.click();
+  });
+
+  fileInput.addEventListener('change', function() {
+    handleFile(this.files[0]);
+  });
+
+  dropArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropArea.style.borderColor = '#333';
+    dropArea.style.color = '#333';
+  });
+
+  dropArea.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    dropArea.style.borderColor = '#ccc';
+    dropArea.style.color = '#888';
+  });
+
+  dropArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropArea.style.borderColor = '#ccc';
+    dropArea.style.color = '#888';
+    const dt = e.dataTransfer;
+    if (dt.files && dt.files.length) {
+      handleFile(dt.files[0]);
+    }
+  });
+
+  // Generate Data URI from Text
+  function generateDataUriFromText() {
+    const text = textInput.value;
+    const mimeType = mimeTypeSelect.value;
+    const charset = mimeType === 'text/html' ? 'charset=utf-8' : '';
+    const dataUri = `data:${mimeType}${charset ? ';' + charset : ''},${encodeURIComponent(text)}`;
+    dataUriOutput.value = dataUri;
+  }
+
+  generateTextUri.addEventListener('click', generateDataUriFromText);
+
+  // Fetch File from URL and Generate Data URI
+  fetchUrlButton.addEventListener('click', () => {
+    const url = urlInput.value;
+    const mimeType = mimeTypeSelect.value;
+    const charset = mimeType === 'text/html' ? 'charset=utf-8' : '';
+    fetch(url)
+      .then(response => response.text())
+      .then(text => {
+        const dataUri = `data:${mimeType}${charset ? ';' + charset : ''},${encodeURIComponent(text)}`;
+        dataUriOutput.value = dataUri;
+      })
+      .catch(error => {
+        dataUriOutput.value = 'Error fetching file.';
+      });
+  });
+
+  // MIME type change event to regenerate the file
+  mimeTypeSelect.addEventListener('change', () => {
+    currentMimeType = mimeTypeSelect.value;
+    // Trigger data regeneration based on the selected MIME type
+    if (fileInput.files.length > 0) {
+      handleFile(fileInput.files[0]);
+    } else if (textInput.value) {
+      generateDataUriFromText();
+    } else if (urlInput.value) {
+      fetchUrlButton.click();
+    }
+  });
+
+  // Copy Data URI to Clipboard
+  copyButton.addEventListener('click', () => {
+    dataUriOutput.select();
+    document.execCommand('copy');
+  });
+
+// Open Data URI in New Tab
+document.getElementById('openInNewTabButton').addEventListener('click', () => {
+  const dataUri = dataUriOutput.value;
+  if (dataUri) {
+    window.open(dataUri, '_blank');
+  } else {
+    alert('No Data URI available to open.');
+  }
+});
+
+</script>
+</body>
+</html>
