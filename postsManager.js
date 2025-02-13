@@ -17,39 +17,54 @@ class SpecialPosts extends HTMLElement {
         return `<li><a href="/posts/${post}" target="_blank">${fileName}</a></li>`;
       }).join('');
 
+      // Template to inject HTML and CSS
       this.innerHTML = `
         <style>
           .posts-container {
             max-width: 600px;
             margin: 20px auto;
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
           }
+
           .posts-container h3 {
             font-size: 24px;
             margin-bottom: 15px;
             color: #333;
           }
+
           .posts-list {
             list-style-type: none;
             padding: 0;
             margin: 0;
           }
+
           .posts-list li {
-            margin: 10px 0;
+            display: block; /* Makes sure each item is in its own block */
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 18px;
-            padding: 5px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
+            color: #333;
           }
+
           .posts-list a {
             text-decoration: none;
             color: #007bff;
             font-weight: bold;
           }
+
+          /* Hover effect on links */
           .posts-list a:hover {
             text-decoration: underline;
           }
         </style>
+
         <div class="posts-container">
           <ul class="posts-list">
             ${listItems}
