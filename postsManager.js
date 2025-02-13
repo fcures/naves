@@ -1,7 +1,7 @@
 class SpecialPosts extends HTMLElement {
   async connectedCallback() {
     try {
-      const response = await fetch('/posts/posts-list.json');  // This file should contain a list of your HTML files
+      const response = await fetch('/posts-list.json');  // This file should contain a list of your HTML files
       const posts = await response.json();
 
       if (posts.length === 0) {
