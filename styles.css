@@ -1,17 +1,106 @@
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CSS Variables for easy theme management */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #112d4e;
+  --background-color: #f5f5f5;
+  --text-color: #333;
+  --heading-color: #112d4e;
+  --link-color: #007bff;
+  --link-hover-color: #0056b3;
+  --font-family: 'Roboto', sans-serif;
+  --base-spacing: 1rem;
+}
+
+/* Global Styles */
 body {
-  font-family: "Helvetica", Sans-Serif;
-  background-color: LightGray;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 16px;
+  padding: var(--base-spacing);
+}
+
+/* Container (for consistent content width) */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: calc(var(--base-spacing) * 2);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  margin-bottom: calc(var(--base-spacing) * 1);
+  line-height: 1.2;
 }
 
 h1 {
-  color: DodgerBlue;
+  font-size: 2.5rem;
+  margin-bottom: calc(var(--base-spacing) * 1.5);
 }
 
-p  {
-  color: black;
-  font-size: 160%;
+h2 {
+  font-size: 2rem;
 }
 
+h3 {
+  font-size: 1.75rem;
+}
+
+/* Paragraphs */
+p {
+  font-size: 1rem;
+  margin-bottom: var(--base-spacing);
+}
+
+/* Links */
 a {
-  color: #112d4e; 
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
+
+a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* Images - responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Buttons */
+button {
+  font-family: var(--font-family);
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: calc(var(--base-spacing) * 0.75) calc(var(--base-spacing) * 1.5);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--link-hover-color);
+}
+
+/* Utility Classes */
+.mt-1 { margin-top: var(--base-spacing); }
+.mb-1 { margin-bottom: var(--base-spacing); }
+.mt-2 { margin-top: calc(var(--base-spacing) * 2); }
+.mb-2 { margin-bottom: calc(var(--base-spacing) * 2); }
+.text-center { text-align: center; }
