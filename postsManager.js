@@ -1,80 +1,109 @@
 class SpecialPosts extends HTMLElement {
+  constructor() {
+    super();
+    this.posts = [];
+    this.filteredPosts = [];
+  }
+
   async connectedCallback() {
     try {
-      const response = await fetch('/posts-list.json');  
+      const response = await fetch('/posts-list.json');
       if (!response.ok) throw new Error('Failed to fetch posts list');
 
-      const posts = await response.json();
+      this.posts = await response.json();
+      this.filteredPosts = this.posts;
 
-      if (!Array.isArray(posts) || posts.length === 0) {
-        this.innerHTML = '<p>No posts available.</p>';
-        return;
-      }
-
-      // Generate list of available posts
-      const listItems = posts.map(post => {
-        const fileName = post.replace('.html', ''); // Remove .html extension
-        return `<li><a href="/posts/${post}" target="_blank">${fileName}</a></li>`;
-      }).join('');
-
-      // Template to inject HTML and CSS
-      this.innerHTML = `
-        <style>
-          .posts-container {
-            max-width: 600px;
-            margin: 20px auto;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          }
-
-          .posts-container h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #333;
-          }
-
-          .posts-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-          }
-
-          .posts-list li {
-            display: block; /* Makes sure each item is in its own block */
-            margin-bottom: 12px;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 18px;
-            color: #333;
-          }
-
-          .posts-list a {
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-          }
-
-          /* Hover effect on links */
-          .posts-list a:hover {
-            text-decoration: underline;
-          }
-        </style>
-
-        <div class="posts-container">
-          <ul class="posts-list">
-            ${listItems}
-          </ul>
-        </div>
-      `;
+      this.render();
     } catch (error) {
       console.error('Error loading posts list:', error);
       this.innerHTML = '<p>Failed to load posts.</p>';
     }
+  }
+
+  handleSearch(event) {
+    const query = event.target.value.toLowerCase();
+    this.filteredPosts = this.posts.filter(post =>
+      post.toLowerCase().includes(query)
+    );
+    this.updatePostList();
+  }
+
+  updatePostList() {
+    const listContainer = this.querySelector('.posts-list');
+    listContainer.innerHTML = this.filteredPosts
+      .map(post => {
+        const fileName = post.replace('.html', '');
+        return `<a href="/posts/${post}" target="_blank" class="post-link">${fileName}</a>`;
+      })
+      .join('');
+  }
+
+  render() {
+    this.innerHTML = `
+      <style>
+        .posts-container {
+          max-width: 600px;
+          margin: 20px auto;
+          font-family: Arial, sans-serif;
+          background-color: #f9f9f9;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .posts-container h3 {
+          font-size: 24px;
+          margin-bottom: 15px;
+          color: #333;
+          text-align: center;
+        }
+
+        .search-input {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          font-size: 16px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+
+        .post-link {
+          display: block;
+          margin: 10px 0;
+          padding: 10px;
+          background-color: #fff;
+          border-left: 4px solid #007bff;
+          border-radius: 4px;
+          text-decoration: none;
+          color: #007bff;
+          font-size: 18px;
+          transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .post-link:hover {
+          background-color: #e6f0ff;
+          border-color: #0056b3;
+        }
+      </style>
+
+      <div class="posts-container">
+        <h3>Available Posts</h3>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search posts..."
+          oninput="this.getRootNode().host.handleSearch(event)"
+        />
+        <div class="posts-list">
+          ${this.filteredPosts
+            .map(post => {
+              const fileName = post.replace('.html', '');
+              return `<a href="/posts/${post}" target="_blank" class="post-link">${fileName}</a>`;
+            })
+            .join('')}
+        </div>
+      </div>
+    `;
   }
 }
 
