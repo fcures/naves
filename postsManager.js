@@ -25,8 +25,9 @@ class SpecialPosts extends HTMLElement {
             font-family: Arial, sans-serif;
           }
           .posts-container h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
           }
           .posts-list {
             list-style-type: none;
@@ -36,6 +37,9 @@ class SpecialPosts extends HTMLElement {
           .posts-list li {
             margin: 10px 0;
             font-size: 18px;
+            padding: 5px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
           }
           .posts-list a {
             text-decoration: none;
