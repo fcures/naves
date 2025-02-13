@@ -87,7 +87,6 @@ class SpecialPosts extends HTMLElement {
       </style>
 
       <div class="posts-container">
-        <h3>Available Posts</h3>
         <input
           type="text"
           class="search-input"
