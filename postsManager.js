@@ -169,9 +169,9 @@ class SpecialPosts extends HTMLElement {
         <div class="posts-list">
           ${this.filteredPosts
             .map(post => {
-              const title = post.title || post.filename.replace('.html', '');
+              const title = post.title || post.filename.replace(/\.html$/, '');
               return `
-                <a href="/posts/${post.filename.replace('.html', '')}" target="_blank" class="post-link">
+                <a href="/posts/${post.filename.replace(/\.html$/, '')}" target="_blank" class="post-link">
                   <h4>${title}</h4>
                   <p>${post.description || ''}</p>
                 </a>
