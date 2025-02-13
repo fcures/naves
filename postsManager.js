@@ -10,7 +10,8 @@ class SpecialPosts extends HTMLElement {
     try {
       const response = await fetch('/posts-list.json');
       if (!response.ok) throw new Error('Failed to fetch posts list');
-      this.posts = await response.json();
+      
+      this.posts = await response.json(); // Now an array of objects with filename, title, description
       this.filteredPosts = [...this.posts];
       this.render();
       this.attachEventListeners();
@@ -21,7 +22,6 @@ class SpecialPosts extends HTMLElement {
   }
 
   attachEventListeners() {
-    // Attach events after rendering the element
     const searchInput = this.querySelector('.search-input');
     const clearButton = this.querySelector('.clear-button');
     if (searchInput) {
@@ -35,20 +35,18 @@ class SpecialPosts extends HTMLElement {
   handleSearch(event) {
     clearTimeout(this.searchTimeout);
     const query = event.target.value.trim().toLowerCase();
-
-    // Debounce the search so filtering doesn't happen on every keystroke immediately
     this.searchTimeout = setTimeout(() => {
       this.filteredPosts = this.posts.filter(post =>
-        post.toLowerCase().includes(query)
+        post.title.toLowerCase().includes(query) ||
+        (post.description && post.description.toLowerCase().includes(query))
       );
       this.updatePostList(query);
     }, 200);
   }
 
-  // Function to safely highlight matching text
+  // Highlight matching text in a string
   highlightText(text, query) {
     if (!query) return text;
-    // Escape special regex characters in query
     const escapedQuery = query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(escapedQuery, 'gi');
     return text.replace(regex, match => `<strong>${match}</strong>`);
@@ -59,15 +57,18 @@ class SpecialPosts extends HTMLElement {
     const resultCount = this.querySelector('.result-count');
     if (!listContainer || !resultCount) return;
 
-    // Update result count text
     resultCount.textContent = `${this.filteredPosts.length} result${this.filteredPosts.length !== 1 ? 's' : ''}`;
-
-    // Update list HTML with highlighted matches
     listContainer.innerHTML = this.filteredPosts
       .map(post => {
-        const fileName = post.replace('.html', '');
-        const highlighted = this.highlightText(fileName, query);
-        return `<a href="/posts/${post}" target="_blank" class="post-link">${highlighted}</a>`;
+        const title = post.title || post.filename.replace('.html', '');
+        const highlightedTitle = this.highlightText(title, query);
+        const highlightedDescription = post.description ? this.highlightText(post.description, query) : '';
+        return `
+          <a href="/posts/${post.filename}" target="_blank" class="post-link">
+            <h4>${highlightedTitle}</h4>
+            <p>${highlightedDescription}</p>
+          </a>
+        `;
       })
       .join('');
   }
@@ -131,6 +132,7 @@ class SpecialPosts extends HTMLElement {
         }
         .post-link {
           display: block;
+          text-align: left;
           margin: 10px 0;
           padding: 10px;
           background-color: #f8f9fa;
@@ -140,6 +142,15 @@ class SpecialPosts extends HTMLElement {
           color: #007bff;
           font-size: 18px;
           transition: background-color 0.3s, border-color 0.3s;
+        }
+        .post-link h4 {
+          margin: 0 0 5px;
+          font-size: 20px;
+        }
+        .post-link p {
+          margin: 0;
+          font-size: 14px;
+          color: #555;
         }
         .post-link strong {
           background-color: yellow;
@@ -158,8 +169,13 @@ class SpecialPosts extends HTMLElement {
         <div class="posts-list">
           ${this.filteredPosts
             .map(post => {
-              const fileName = post.replace('.html', '');
-              return `<a href="/posts/${post}" target="_blank" class="post-link">${fileName}</a>`;
+              const title = post.title || post.filename.replace('.html', '');
+              return `
+                <a href="/posts/${post.filename}" target="_blank" class="post-link">
+                  <h4>${title}</h4>
+                  <p>${post.description || ''}</p>
+                </a>
+              `;
             })
             .join('')}
         </div>
