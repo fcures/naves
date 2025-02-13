@@ -51,7 +51,6 @@ class SpecialPosts extends HTMLElement {
           }
         </style>
         <div class="posts-container">
-          <h3>Available Posts</h3>
           <ul class="posts-list">
             ${listItems}
           </ul>
