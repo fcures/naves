@@ -17,4 +17,4 @@ class SpecialPosts extends HTMLElement {
   }
 }
 
-customElements.define('special-posts', SpecialPostsr)
+customElements.define('special-posts', SpecialPosts)
