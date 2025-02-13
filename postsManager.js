@@ -1,20 +1,50 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
-import {fileURLToPath} from 'url';
 
 class SpecialPosts extends HTMLElement {
-  connectedCallback(){
+  async connectedCallback() {
+    try {
+      const postsDir = path.resolve('/posts/');
+      const files = await fs.readdir(postsDir);
+      const htmlFiles = files.filter(file => path.extname(file) === '.html');
 
-  const dirContents = fs.readdirSync('/posts/');
+      if (htmlFiles.length === 0) {
+        this.innerHTML = '<p>No HTML posts available.</p>';
+        return;
+      }
 
-  dirContents;
+      const listItems = htmlFiles.map(file => {
+        const fileName = path.basename(file, '.html');
+        return `<li><a href="/posts/${file}" target="_blank">${fileName}</a></li>`;
+      }).join('');
 
-
-    var fs = require('fs');
-    var files = fs.readdirSync('/posts/');
-
-    this.innerHTML = `<h3>`, files[1].FileName,`</h3>`
+      this.innerHTML = `
+        <style>
+          .posts-list {
+            list-style-type: none;
+            padding: 0;
+          }
+          .posts-list li {
+            margin: 5px 0;
+          }
+          .posts-list a {
+            text-decoration: none;
+            color: #007bff;
+          }
+          .posts-list a:hover {
+            text-decoration: underline;
+          }
+        </style>
+        <h3>Available Posts</h3>
+        <ul class="posts-list">
+          ${listItems}
+        </ul>
+      `;
+    } catch (error) {
+      console.error('Error reading posts directory:', error);
+      this.innerHTML = '<p>Failed to load posts.</p>';
+    }
   }
 }
 
-customElements.define('special-posts', SpecialPosts)
+customElements.define('special-posts', SpecialPosts);
