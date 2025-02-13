@@ -1,21 +1,18 @@
-import fs from 'fs/promises';
-import path from 'path';
-
 class SpecialPosts extends HTMLElement {
   async connectedCallback() {
     try {
-      const postsDir = path.resolve('/posts/');
-      const files = await fs.readdir(postsDir);
-      const htmlFiles = files.filter(file => path.extname(file) === '.html');
+      const response = await fetch('/posts/posts-list.json');  // This file should contain a list of your HTML files
+      const posts = await response.json();
 
-      if (htmlFiles.length === 0) {
+      if (posts.length === 0) {
         this.innerHTML = '<p>No HTML posts available.</p>';
         return;
       }
 
-      const listItems = htmlFiles.map(file => {
-        const fileName = path.basename(file, '.html');
-        return `<li><a href="/posts/${file}" target="_blank">${fileName}</a></li>`;
+      // Generate the list items for available posts
+      const listItems = posts.map(post => {
+        const fileName = post.replace('.html', ''); // Remove .html extension
+        return `<li><a href="/posts/${post}" target="_blank">${fileName}</a></li>`;
       }).join('');
 
       this.innerHTML = `
@@ -41,7 +38,7 @@ class SpecialPosts extends HTMLElement {
         </ul>
       `;
     } catch (error) {
-      console.error('Error reading posts directory:', error);
+      console.error('Error loading posts list:', error);
       this.innerHTML = '<p>Failed to load posts.</p>';
     }
   }
